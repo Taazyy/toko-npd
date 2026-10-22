@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Merchandise NPD Club: kaos, hoodie, topi, tote bag, dan perlengkapan lain dengan logo klub.">
+<title>NPD Club Merch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,700;1,800&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <span class="lg theme" role="img" aria-label="Logo NPD Club"></span>
+    <span class="tag-merch">Merch</span>
+    <button class="cart-btn" id="open-cart" type="button" aria-label="Buka keranjang">Keranjang <span class="count" id="cart-count">0</span></button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <span class="lg theme" role="img" aria-label="Logo NPD Club"></span>
+      <div class="stripe" aria-hidden="true"></div>
+      <h1>Merchandise anggota</h1>
+      <p>Kaos, hoodie, topi, dan perlengkapan lain dengan logo NPD Club. Pilih ukuran, masukkan keranjang, lalu kirim pesananmu ke admin.</p>
+      <button class="cta" id="to-shop" type="button">Lihat koleksi</button>
+    </div>
+    <div class="how">
+      <h2>Cara pesan</h2>
+      <ol>
+        <li>Pilih produk dan ukuran.</li>
+        <li>Buka keranjang, isi nama dan kontak.</li>
+        <li>Salin ringkasan pesanan, kirim ke admin.</li>
+        <li>Bayar sesuai arahan admin, lalu tunggu barang.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="koleksi" aria-label="Koleksi">
+    <div class="bar">
+      <span class="label">Kategori</span>
+      <button class="chip" type="button" data-cat="all" aria-pressed="true">Semua</button>
+      <button class="chip" type="button" data-cat="Pakaian" aria-pressed="false">Pakaian</button>
+      <button class="chip" type="button" data-cat="Aksesori" aria-pressed="false">Aksesori</button>
+      <label class="sort" for="sort">Urutkan
+        <select id="sort">
+          <option value="default">Pilihan kami</option>
+          <option value="asc">Termurah</option>
+          <option value="desc">Termahal</option>
+        </select>
+      </label>
+    </div>
+    <details class="guide">
+      <summary>Panduan ukuran pakaian</summary>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Ukuran</th><th>Lebar dada</th><th>Panjang badan</th></tr></thead>
+          <tbody>
+            <tr><td>S</td><td>49 cm</td><td>69 cm</td></tr>
+            <tr><td>M</td><td>52 cm</td><td>71 cm</td></tr>
+            <tr><td>L</td><td>54 cm</td><td>73 cm</td></tr>
+            <tr><td>XL</td><td>57 cm</td><td>75 cm</td></tr>
+            <tr><td>XXL</td><td>60 cm</td><td>77 cm</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+    <p class="results" id="results" aria-live="polite"></p>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="info" aria-label="Info pemesanan">
+    <h2>Info pemesanan</h2>
+    <div class="info-grid">
+      <div>
+        <h3>Pembayaran</h3>
+        <ul>
+          <li>Transfer bank</li>
+          <li>QRIS</li>
+          <li>E-wallet</li>
+          <li>Bayar tunai (khusus ambil langsung)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Batas bayar</h3>
+        <p>Bayar paling lambat 1x24 jam setelah admin mengonfirmasi pesanan. Pesanan diproses setelah pembayaran masuk.</p>
+      </div>
+      <div>
+        <h3>Pengiriman</h3>
+        <p>Dikirim 2 sampai 3 hari kerja setelah pembayaran. Nomor resi dikirim lewat WhatsApp.</p>
+      </div>
+      <div>
+        <h3>Tukar ukuran</h3>
+        <p>Bisa ditukar maksimal 3 hari setelah barang diterima, selama belum dipakai dan dicuci. Ongkir tukar ditanggung pembeli.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>Pesanan dikonfirmasi admin NPD Club sebelum pembayaran.</span>
+    <span>Ini halaman contoh. Ganti bahan, ukuran, dan harga sesuai produk aslimu.</span>
+  </footer>
+</main>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Keranjang belanja" aria-hidden="true">
+  <header>
+    <h2>Keranjang</h2>
+    <button class="close" id="close-cart" type="button" aria-label="Tutup keranjang">&times;</button>
+  </header>
+  <div class="scroll">
+    <ul class="items" id="items"></ul>
+    <div class="cart-empty" id="cart-empty">Keranjang masih kosong. Pilih merch dulu.</div>
+    <div id="checkout" hidden>
+      <div class="sum">
+        <div class="row"><span>Subtotal</span><span id="subtotal"></span></div>
+        <div class="row"><span>Ongkir</span><span id="ongkir"></span></div>
+        <div class="ship"><span id="ship-msg"></span><div class="meter" id="meter-wrap"><i id="meter"></i></div></div>
+        <div class="row total"><span>Total</span><span id="total"></span></div>
+      </div>
+      <form id="order-form">
+        <fieldset>
+          <legend>Pengambilan</legend>
+          <label class="opt" for="k-kirim"><input type="radio" id="k-kirim" name="kirim" value="kirim" checked><span>Kirim ke alamat<small>Ongkir flat Rp15.000, gratis untuk belanja Rp250.000 ke atas.</small></span></label>
+          <label class="opt" for="k-ambil"><input type="radio" id="k-ambil" name="kirim" value="ambil"><span>Ambil langsung<small>Gratis. Jadwal ambil dikonfirmasi admin.</small></span></label>
+        </fieldset>
+        <fieldset>
+          <legend>Metode pembayaran</legend>
+          <label class="opt" for="p-transfer"><input type="radio" id="p-transfer" name="bayar" value="transfer" checked><span>Transfer bank</span></label>
+          <label class="opt" for="p-qris"><input type="radio" id="p-qris" name="bayar" value="qris"><span>QRIS<small>Bisa dari semua aplikasi bank dan e-wallet.</small></span></label>
+          <label class="opt" for="p-ewallet"><input type="radio" id="p-ewallet" name="bayar" value="ewallet"><span>E-wallet</span></label>
+          <label class="opt" for="p-cod"><input type="radio" id="p-cod" name="bayar" value="cod" disabled><span>Bayar tunai<small>Hanya untuk ambil langsung.</small></span></label>
+          <div class="pay-detail" id="pay-detail"></div>
+        </fieldset>
+        <label for="nama">Nama penerima<input id="nama" name="nama" type="text" autocomplete="name" required placeholder="Nama lengkap"></label>
+        <label for="wa">Nomor WhatsApp<input id="wa" name="wa" type="tel" autocomplete="tel" required placeholder="08xx xxxx xxxx"></label>
+        <label for="alamat" id="alamat-wrap">Alamat lengkap dan kota<textarea id="alamat" name="alamat" autocomplete="street-address" required placeholder="Jalan, nomor, kecamatan, kota, kode pos"></textarea></label>
+        <label for="catatan">Catatan (opsional)<input id="catatan" name="catatan" type="text" placeholder="Misal: kaos M dan L ditukar jika kosong"></label>
+        <button class="primary" type="submit">Buat ringkasan pesanan</button>
+      </form>
+      <div class="order-out" id="order-out" hidden>
+        <textarea id="order-text" readonly aria-label="Ringkasan pesanan"></textarea>
+        <button class="secondary" id="copy-order" type="button">Salin ringkasan</button>
+        <p class="note">Pesanan belum terkirim. Salin teks ini lalu kirim ke admin lewat chat untuk konfirmasi dan pembayaran.</p>
+      </div>
+    </div>
+  </div>
+</aside>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
